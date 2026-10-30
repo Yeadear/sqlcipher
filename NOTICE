@@ -1,0 +1,35 @@
+Hanzo SQLCipher
+Copyright (c) 2026 Hanzo AI, Inc.
+
+Ported from https://github.com/sqlcipher/sqlcipher at v4.5.6.
+
+This product is a pure-Go port of the SQLCipher page codec: the key derivation,
+the per-page AES-256-CBC encryption, the per-page HMAC-SHA512 authentication,
+and the page-1 salt handling. It implements SQLCipher 4's on-disk format and is
+byte-compatible with it in both directions — it reads databases the C library
+wrote, and the C library reads databases it writes.
+
+It is a port, not a clean-room reimplementation: the format was taken from the
+SQLCipher source, function by function, and verified against it byte for byte.
+The Go expression of it is Hanzo's; the design and the format are Zetetic's.
+
+This product includes software from SQLCipher (https://github.com/sqlcipher/sqlcipher),
+licensed under BSD-3-Clause:
+
+    Copyright (c) 2008-2023, ZETETIC LLC
+    All rights reserved.
+
+The full BSD-3-Clause notice, conditions and disclaimer are retained verbatim in
+the LICENSE file of this repository, as that license requires. Hanzo's copyright
+covers only Hanzo's own expression; ZETETIC LLC retains its rights in the work
+this was derived from.
+
+SQLCipher is a trademark of ZETETIC LLC. This product is not affiliated with,
+endorsed by, or sponsored by ZETETIC LLC. The name is used to identify the file
+format this product interoperates with.
+
+DEPENDENCIES
+
+This module has no third-party dependencies. Every cryptographic primitive comes
+from the Go standard library: crypto/aes, crypto/cipher, crypto/hmac,
+crypto/sha512, crypto/pbkdf2, crypto/rand and crypto/subtle.

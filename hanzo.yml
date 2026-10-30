@@ -1,0 +1,18 @@
+# Canonical CI/CD config for hanzoai/sqlcipher — the one file both the hanzoai/ci
+# reusable (.hanzo/workflows/cicd.yml) and platform.hanzo.ai read.
+#
+# A Go module (encrypted SQLite page/file reader, with a parity harness against
+# the reference implementation). It ships from a tag and builds no image, so
+# there is no `images:` and no `deploy:` — only a gate.
+#
+# `./...` deliberately includes parity/ and reader/: the parity suite is the one
+# that answers the only question that matters for a format reader — do we read
+# what the reference writes — and it runs against the committed testdata, so it
+# needs nothing but the checkout. `-count=1` so a green is this commit.
+test:
+  - name: build
+    run: |
+      set -e
+      go build ./...
+      go vet ./...
+      go test -race -count=1 ./...

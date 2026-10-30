@@ -1,0 +1,10 @@
+*.db
+!testdata/*.db
+*.db-wal
+*.db-shm
+*.log
+
+# Local symlinks to LLM.md
+CLAUDE.md
+AGENTS.md
+GEMINI.md
